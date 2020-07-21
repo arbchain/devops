@@ -4,7 +4,7 @@ import requests
 import time
 
 # stores besu-sample-networks folder location.
-directoryLocation = "../../../Documents/besu-sample-networks/"
+directoryLocation = "/root/besu/besu-sample-networks/"
 
 
 # stores grafana api url

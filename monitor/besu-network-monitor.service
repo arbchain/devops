@@ -1,0 +1,9 @@
+[Unit]
+Description=Besu Network Monitor Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /root/besu/devops/monitor/test_node.py
+
+[Install]
+WantedBy=default.target
