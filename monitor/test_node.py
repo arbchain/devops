@@ -77,23 +77,21 @@ def run_script(api_url, total_node):
 		node_status = get_node_status(api_url, total_node)
 		if storage_status == fail or node_status == fail or node_status == connection_error:
 			print("\nRemoving.......\n")
-			# subprocess.call(["./remove.sh"])
-			# time.sleep(sleep_time)
-			# print("\nReinstalling......\n")
-			# subprocess.call(["./run-privacy.sh"])
-			# time.sleep(waiting_time)
+			subprocess.call(["./remove.sh"])
+			time.sleep(sleep_time)
+			print("\nReinstalling......\n")
+			subprocess.call(["./run-privacy.sh"])
+			time.sleep(waiting_time)
 		elif node_status == http_error or node_status == other_exception:
 			print("Terminating the program")
 			break
-		else:
-			print("All good")
 		time.sleep(sleep_time)
 
 
 if __name__ == "__main__":
 
 	# Passing arg from command line:
-	# Command to run: python3 test.py ../besu/besu-sample-networks/ 0 180 10 6
+	# Command to run: python3 test_node.py /root/besu/besu-sample-networks/ 0 180 10 6
 	# First arg: location
 	# Second arg: resume_count
 	# Third arg: waiting_time
