@@ -1,0 +1,36 @@
+- name: Docker installation
+  hosts: all
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+  
+  pre_tasks:
+  - name: Update and upgrade apt packages
+    apt:
+      upgrade: no
+      update_cache: yes
+      cache_valid_time: 86400 
+    
+  roles:
+  - role: "nickjj.docker"
+    tags: ["docker"]
+  tasks:
+  - name: Copy file with owner and permissions
+    copy:
+      src: /home/koshik/.ssh/consensolabs-admin.pem
+      dest: /home/ubuntu/.ssh/id_rsa
+      owner: ubuntu
+      mode: '0644'
+  - name: Clone the repo
+    git:
+      repo: git@github.com:PegaSysEng/besu-sample-networks.git
+      dest: /home/ubuntu/besunet
+      accept_hostkey: yes
+      key_file: /home/ubuntu/.ssh/id_rsa
+  - name: Run besu private network
+    command: ./run-privacy.sh
+    args:
+      chdir: /home/ubuntu/besunet
+  vars:
+    ansible_ssh_private_key_file: '/home/koshik/.ssh/consensolabs-admin.pem'
+  

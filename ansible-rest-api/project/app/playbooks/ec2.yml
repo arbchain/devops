@@ -1,0 +1,20 @@
+# Basic provisioning example
+- name: Docker installation
+  hosts: localhost
+  connection: local
+  
+  tasks:
+  - pip:
+      name: boto
+  - name: Create a micro instance
+    ec2:
+      region: ap-south-1
+      aws_access_key: <ACCESS_KEY>
+      aws_secret_key: <SECRET_KEY>
+      key_name: consensolabs-admin
+      instance_type: t2.large
+      vpc_subnet_id: subnet-f691e3ba
+      group: besu-net-sg
+      image: ami-02b5fbc2cb28b77b8
+      wait: yes
+      assign_public_ip: yes
