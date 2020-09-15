@@ -1,0 +1,10 @@
+---
+- hosts: all
+  remote_user: ubuntu
+  become: true
+  force_handlers: True
+
+  roles:
+  - role: pegasyseng.hyperledger_besu
+    vars:
+      besu_version: 1.5.2

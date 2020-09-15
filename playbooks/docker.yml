@@ -1,0 +1,8 @@
+- name: Example
+  hosts: "all"
+  remote_user: ubuntu
+  become: true
+
+  roles:
+    - role: "nickjj.docker"
+      tags: ["docker"]
