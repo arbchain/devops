@@ -3,7 +3,7 @@ Description=Besu Network Monitor Service
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 /root/besu/devops/monitor/test_node.py
+ExecStart=/usr/bin/python3 /root/besu/devops/monitor/test_node.py /root/besu/besu-sample-networks/ 0 180 10 6
 
 [Install]
 WantedBy=default.target
